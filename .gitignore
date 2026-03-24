@@ -1,1 +1,3 @@
-client
+client/
+log/
+log_server/
