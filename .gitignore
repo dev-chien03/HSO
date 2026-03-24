@@ -1,0 +1,22 @@
+# Large/generated data
+data/
+
+# Archives
+*.zip
+*.tar
+*.tar.gz
+*.7z
+
+# Build outputs
+/target/
+
+# IDE
+/.idea/
+/.vscode/
+*.iml
+
+# Logs and temp
+*.log
+*.tmp
+*.bak
+*.swp
