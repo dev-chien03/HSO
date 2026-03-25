@@ -5,6 +5,7 @@ import client.Clan;
 import client.Player;
 import core.Manager;
 import core.SQL;
+import core.SaveData;
 import io.Message;
 import java.io.IOException;
 import java.sql.Connection;
@@ -63,6 +64,8 @@ public class Mob_MoTaiNguyen extends MainObject{
                 this.clan.remove_mo_tai_nguyen(this);
             }
             this.clan = ((Player)mainAtk).myclan;
+            // Persist chiếm mỏ ngay khi chiếm xong để tránh mất dữ liệu nếu tắt server trước chu kỳ auto-save
+            SaveData.process();
             if (this.nhanban != null) {
                 Message m13 = new Message(8);
                 m13.writer().writeShort(this.nhanban.index);

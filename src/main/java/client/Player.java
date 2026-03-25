@@ -344,6 +344,8 @@ public class Player extends Body2 {
             date = Util.getDate(rs.getString("date"));
             diemdanh = rs.getByte("diemdanh");
             chucphuc = rs.getByte("chucphuc");
+            suckhoe = rs.getInt("suckhoe");
+            pointpk = rs.getInt("pointpk");
             hieuchien = rs.getInt("hieuchien");
             chuyencan = rs.getInt("chuyencan");
             questId = rs.getShort("quest_id");
@@ -1179,6 +1181,8 @@ public class Player extends Body2 {
             a += ",`kynang` = " + kynang;
             a += ",`diemdanh` = " + diemdanh;
             a += ",`chucphuc` = " + chucphuc;
+            a += ",`suckhoe` = " + suckhoe;
+            a += ",`pointpk` = " + pointpk;
             a += ",`hieuchien` = " + hieuchien;
             a += ",`chuyencan` = " + chuyencan;
             a += ",`quest_id` = " + questId;
@@ -2058,9 +2062,10 @@ public class Player extends Body2 {
 //            e.printStackTrace();
 //        }
         CheckSkillPoint();
-        suckhoe = 30000;
+        if (suckhoe <= 0) {
+            suckhoe = 30000;
+        }
         typepk = -1;
-        pointpk = 0;
         hp = body.get_HpMax();
         mp = body.get_MpMax();
         fashion = Part_fashion.get_part(this);

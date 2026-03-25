@@ -290,20 +290,24 @@ public class NhanBan extends MainObject{
         this.y = p0.y;
         this.part_p = new ArrayList<>();
         for (int i = 0; i < p0.item.wear.length; i++) {
-            Part_player temp_add = new Part_player();
             if (i != 0 && i != 1 && i != 6 && i != 7 && i != 10) {
                 continue;
             }
             Item3 temp = p0.item.wear[i];
             if (temp != null) {
+                Part_player temp_add = new Part_player();
                 temp_add.type = temp.type;
                 if (i == 10 && p0.item.wear[14] != null && (p0.item.wear[14].id >= 4638 && p0.item.wear[14].id <= 4648)) {
                     temp_add.part = p0.item.wear[14].part;
                 } else {
                     temp_add.part = temp.part;
                 }
+                this.part_p.add(temp_add);
             }
-            this.part_p.add(temp_add);
+        }
+        if (this.part_p.isEmpty()) {
+            byte defaultHairPart = (byte) ((p0.head % 2 != 0) ? 33 : 32); // nam 5_32, nữ 5_33
+            this.part_p.add(new Part_player(5, defaultHairPart));
         }
         this.name = "Nhân bản - " + p0.name;
         this.clazz = p0.clazz;

@@ -1748,11 +1748,27 @@ public class MapService {
     }
 
     public static void Player_Die(Map map, MainObject p, MainObject Obj, boolean include) throws IOException {
+        if (Obj.isPlayer() && p.isPlayer()) {
+            Player atk = (Player) Obj;
+            // Luôn cộng điểm PK khi giết người chơi, cộng đồ sát nếu đang ở chế độ đồ sát
+            if (atk.typepk == -1) {
+                atk.hieuchien++;
+            }
+            atk.pointpk++;
+            try {
+                Service.send_notice_box(atk.conn, "Đồ sát: " + atk.hieuchien + " | PK: " + atk.pointpk);
+                Service.send_point_pk(atk); // cập nhật thanh PK
+            } catch (Exception ignored) {}
+        }
 
         Message m = new Message(41);
         m.writer().writeShort(p.index);
         m.writer().writeShort(Obj.index);
-        m.writer().writeShort(Obj.typepk); // point pk
+        short killerPointPk = 0;
+        if (Obj.isPlayer()) {
+            killerPointPk = (short) ((Player) Obj).pointpk;
+        }
+        m.writer().writeShort(killerPointPk); // point pk
         m.writer().writeByte(Obj.get_TypeObj()); // type main object
         if (!include) {
             ((Player) p).conn.addmsg(m);

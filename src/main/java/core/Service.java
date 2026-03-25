@@ -430,8 +430,8 @@ public class Service {
 
     public static void send_point_pk(Player p) throws IOException {
         Message m = new Message(59);
-        m.writer().writeInt(p.suckhoe);
-        m.writer().writeInt(p.pointarena);
+        m.writer().writeInt(p.pointpk);
+        m.writer().writeInt(p.hieuchien);
         p.conn.addmsg(m);
         m.cleanup();
     }

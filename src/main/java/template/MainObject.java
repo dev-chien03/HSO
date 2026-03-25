@@ -288,7 +288,7 @@ public class MainObject {
             return;
         }
         if (ObjAtk.isPlayer() && focus.isPlayer() && !map.isMapChiemThanh() && (map.ismaplang || ObjAtk.level < 11 || focus.level < 11
-                || (ObjAtk.typepk != 0 && ObjAtk.typepk == focus.typepk) || ObjAtk.hieuchien > 32_000)) {
+            || (ObjAtk.typepk != 0 && ObjAtk.typepk == focus.typepk && ObjAtk.typepk != -1) || ObjAtk.hieuchien > 32_000)) {
             return;
         }
         if (focus.isMob() && focus.template.mob_id == 152 && !ChiemThanhManager.isDameTruChinh(map)) {
